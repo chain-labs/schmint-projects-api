@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 class Projects(models.Model):
-    id = models.IntegerField(primary_key=True)
     title = models.TextField(null=True, blank=True)
     contractAddress = models.TextField(null=True, blank=True)
     abi = models.JSONField(null=True, blank=True)
@@ -26,3 +25,6 @@ class Projects(models.Model):
     icytools_url = models.TextField(null=True, blank=True)
     discord_url = models.TextField(null=True, blank=True)
     info = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+         return self.title
