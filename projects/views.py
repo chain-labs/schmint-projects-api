@@ -38,6 +38,7 @@ class ProjectsAPI(APIView):
                             "maxPurchase": project.maxPurchase,
                             "maxWallet": project.maxWallet,
                             "tokenStandard": project.tokenStandard,
+                            "isReceivableOnWallet": project.isReceivableOnWallet,
                             "socials": {
                                 "twitter_url": project.twitter_url,
                                 "x2y2_url": project.x2y2_url,
