@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["172.105.51.112", "127.0.0.1"]
 
+CORS_ORIGIN_ALLOW_ALL=True
+
 
 # Application definition
 
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "projects.apps.ProjectsConfig",
     "rest_framework",
+    "corsheaders"
 ]
 
 MIDDLEWARE = [
@@ -49,6 +52,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "schmint_projects.urls"
