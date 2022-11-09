@@ -26,6 +26,7 @@ class Projects(models.Model):
     discord_url = models.TextField(null=True, blank=True)
     info = models.TextField(null=True, blank=True)
     isReceivableOnWallet = models.BooleanField(default=False)
+    mintTimestampNotDecided = models.BooleanField(default=False)
 
     def __str__(self):
          return self.title
@@ -55,6 +56,7 @@ class TestProjects(models.Model):
     discord_url = models.TextField(null=True, blank=True)
     info = models.TextField(null=True, blank=True)
     isReceivableOnWallet = models.BooleanField(default=False)
+    mintTimestampNotDecided = models.BooleanField(default=False)
 
     def __str__(self):
          return self.title
