@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,11 +25,11 @@ SECRET_KEY = "django-insecure-8&dn^npz!f5tb^_+wd7xbwd4c+&z3lrl43ysu)#h%(0j2yhd&1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["172.105.51.112", "127.0.0.1"]
+ALLOWED_HOSTS = ["172.105.51.112", "127.0.0.1", "projects.simplrdao.com"]
 
 CORS_ORIGIN_ALLOW_ALL=True
 
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 # Application definition
 
 INSTALLED_APPS = [
