@@ -18,6 +18,8 @@ class ProjectsAPI(APIView):
 
         for project in data:
             startTimestamp = project.startTimestamp
+            if startTimestamp:
+                startTimestamp = calendar.timegm(startTimestamp.utctimetuple())
             projectJSON = {
                             "id": str(project.id),
                             "title": project.title,
@@ -28,7 +30,7 @@ class ProjectsAPI(APIView):
                                 "name": project.network_name
                             },
                             "description": project.description,
-                            "startTimestamp": calendar.timegm(startTimestamp.utctimetuple()),
+                            "startTimestamp": startTimestamp,
                             "supply": project.supply,
                             "price": project.price,
                             "banner": project.banner,
@@ -64,6 +66,8 @@ class TestProjectsAPI(APIView):
 
         for project in data:
             startTimestamp = project.startTimestamp
+            if startTimestamp:
+                startTimestamp = calendar.timegm(startTimestamp.utctimetuple())
             projectJSON = {
                             "id": str(project.id),
                             "title": project.title,
@@ -74,7 +78,7 @@ class TestProjectsAPI(APIView):
                                 "name": project.network_name
                             },
                             "description": project.description,
-                            "startTimestamp": calendar.timegm(startTimestamp.utctimetuple()),
+                            "startTimestamp": startTimestamp,
                             "supply": project.supply,
                             "price": project.price,
                             "banner": project.banner,
