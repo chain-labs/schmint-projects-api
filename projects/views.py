@@ -10,10 +10,10 @@ class ProjectsAPI(APIView):
     def get(self, request, format=None):
         projects = []
         data = Projects.objects.all()
-        networks = {"Polygon Matic": 137,
+        networks = {"Polygon": 137,
                     "Polygon Mumbai": 80001,
-                    "Ethereum Mainnet": 1,
-                    "Ethereum Goerli": 5
+                    "Ethereum": 1,
+                    "Goerli": 5
                     }
 
         for project in data:
@@ -59,10 +59,10 @@ class TestProjectsAPI(APIView):
     def get(self, request, format=None):
         projects = []
         data = TestProjects.objects.all()
-        networks = {"Polygon Matic": 137,
+        networks = {"Polygon": 137,
                     "Polygon Mumbai": 80001,
-                    "Ethereum Mainnet": 1,
-                    "Ethereum Goerli": 5
+                    "Ethereum": 1,
+                    "Goerli": 5
                     }
 
         for project in data:
