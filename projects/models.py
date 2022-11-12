@@ -60,3 +60,19 @@ class TestProjects(models.Model):
 
     def __str__(self):
          return self.title
+
+class Logger(models.Model):
+    error_name = models.TextField()
+    error_description = models.TextField()
+    status_code = models.IntegerField()
+    slug = models.TextField()
+    timestamp = models.CharField(max_length=30)
+    wallet_address = models.TextField(null=True, blank=True)
+
+class TestLogger(models.Model):
+    error_name = models.TextField()
+    error_description = models.TextField()
+    status_code = models.IntegerField()
+    slug = models.TextField()
+    timestamp = models.CharField(max_length=30)
+    wallet_address = models.TextField(null=True, blank=True)

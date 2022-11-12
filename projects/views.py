@@ -1,9 +1,12 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Projects, TestProjects
+from .models import Projects, TestProjects, Logger, TestLogger
 from django.http import JsonResponse
 import calendar
+from django import http
+from django.conf import settings
+from .serializers import LoggerSerializer, TestLoggerSerializer
 
 # Create your views here.
 class ProjectsAPI(APIView):   
@@ -103,3 +106,35 @@ class TestProjectsAPI(APIView):
                         }
             projects.append(projectJSON)
         return JsonResponse(projects, safe=False)
+
+
+class LoggerAPI(APIView):   
+    def get(self, request, format=None):
+        if request.META['REMOTE_ADDR'] not in settings.ALLOWED_IPS:
+             return http.HttpResponseForbidden('<h1>Forbidden</h1>')
+        data = Logger.objects.values('id', 'error_name', 'error_description', 'status_code', 'wallet_address', 'slug', 'timestamp')
+        return Response(data)
+
+    def post(self, request, format=None):
+        if request.META['REMOTE_ADDR'] not in settings.ALLOWED_IPS:
+             return http.HttpResponseForbidden('<h1>Forbidden</h1>')
+
+        log_data = request.data.get('logs')
+        logger_serializer = LoggerSerializer(data=log_data)
+        if logger_serializer.is_valid():
+            logger_serializer.save()
+            return JsonResponse(logger_serializer.data, status=status.HTTP_201_CREATED) 
+        return JsonResponse(logger_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class TestLoggerAPI(APIView):   
+    def get(self, request, format=None):
+        data = TestLogger.objects.values('id', 'error_name', 'error_description', 'status_code', 'wallet_address', 'slug', 'timestamp')
+        return Response(data)
+
+    def post(self, request, format=None):
+        test_log_data = request.data.get('logs')
+        test_logger_serializer = TestLoggerSerializer(data=test_log_data)
+        if test_logger_serializer.is_valid():
+            test_logger_serializer.save()
+            return JsonResponse(test_logger_serializer.data, status=status.HTTP_201_CREATED) 
+        return JsonResponse(test_logger_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
