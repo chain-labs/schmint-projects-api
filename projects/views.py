@@ -112,7 +112,7 @@ class LoggerAPI(APIView):
     def get(self, request, format=None):
         if request.META['REMOTE_ADDR'] not in settings.ALLOWED_IPS:
              return http.HttpResponseForbidden('<h1>Forbidden</h1>')
-        data = Logger.objects.values('id', 'error_name', 'error_description', 'status_code', 'wallet_address', 'slug', 'timestamp')
+        data = Logger.objects.values('id', 'error_name', 'error_description', 'error_object', 'status_code', 'wallet_address', 'slug', 'timestamp')
         return Response(data)
 
     def post(self, request, format=None):
@@ -128,7 +128,7 @@ class LoggerAPI(APIView):
 
 class TestLoggerAPI(APIView):   
     def get(self, request, format=None):
-        data = TestLogger.objects.values('id', 'error_name', 'error_description', 'status_code', 'wallet_address', 'slug', 'timestamp')
+        data = TestLogger.objects.values('id', 'error_name', 'error_description', 'error_object', 'status_code', 'wallet_address', 'slug', 'timestamp')
         return Response(data)
 
     def post(self, request, format=None):
