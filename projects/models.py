@@ -64,6 +64,7 @@ class TestProjects(models.Model):
 class Logger(models.Model):
     error_name = models.TextField()
     error_description = models.TextField()
+    error_object = models.JSONField(null=True, blank=True)
     status_code = models.IntegerField()
     slug = models.TextField()
     timestamp = models.CharField(max_length=30)
@@ -72,6 +73,7 @@ class Logger(models.Model):
 class TestLogger(models.Model):
     error_name = models.TextField()
     error_description = models.TextField()
+    error_object = models.JSONField(null=True, blank=True)
     status_code = models.IntegerField()
     slug = models.TextField()
     timestamp = models.CharField(max_length=30)
