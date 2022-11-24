@@ -27,9 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["172.105.51.112", "127.0.0.1", "projects.simplrdao.com"]
 
-# CORS_ORIGIN_ALLOW_ALL=True
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ALLOWED_ORIGINS = ["https://projects.simplrdao.com", "https://schmint.simplrhq.com"]
+CORS_ORIGIN_ALLOW_ALL=True
+# CORS_ORIGIN_ALLOW_ALL = False
+# CORS_ALLOWED_ORIGINS = ["https://projects.simplrdao.com", "https://schmint.simplrhq.com"]
 ALLOWED_IPS = ["115.243.103.2", "3.132.239.107"]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
