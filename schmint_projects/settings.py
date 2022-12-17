@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-8&dn^npz!f5tb^_+wd7xbwd4c+&z3lrl43ysu)#h%(0j2yhd&1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["172.105.51.112", "127.0.0.1", "projects.simplrdao.com"]
+ALLOWED_HOSTS = ["172.105.51.112", "127.0.0.1", "projects.simplrdao.com", "api.simplrhq.com", "172.105.53.107"]
 
 CORS_ORIGIN_ALLOW_ALL=True
 # CORS_ORIGIN_ALLOW_ALL = False
