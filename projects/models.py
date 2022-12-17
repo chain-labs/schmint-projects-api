@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ValidationError
 
 # Create your models here.
 class Projects(models.Model):
@@ -27,9 +28,15 @@ class Projects(models.Model):
     info = models.TextField(null=True, blank=True)
     isReceivableOnWallet = models.BooleanField(default=False)
     mintTimestampNotDecided = models.BooleanField(default=False)
+    isFiatPaymentAccepted = models.BooleanField(default=False)
+    fiatPaymentApiIdentifier = models.TextField(null=True, blank=True)
 
     def __str__(self):
          return self.title
+        
+    def clean(self):
+        if self.isFiatPaymentAccepted and self.fiatPaymentApiIdentifier=="":
+            raise ValidationError("fiatPaymentApiIdentifier field cannot be empty when isFiatPaymentAccepted is true")
 
 class TestProjects(models.Model):
     title = models.TextField(null=True, blank=True)
@@ -57,9 +64,15 @@ class TestProjects(models.Model):
     info = models.TextField(null=True, blank=True)
     isReceivableOnWallet = models.BooleanField(default=False)
     mintTimestampNotDecided = models.BooleanField(default=False)
+    isFiatPaymentAccepted = models.BooleanField(default=False)
+    fiatPaymentApiIdentifier = models.TextField(null=True, blank=True)
 
     def __str__(self):
          return self.title
+        
+    def clean(self):
+        if self.isFiatPaymentAccepted and self.fiatPaymentApiIdentifier=="":
+            raise ValidationError("fiatPaymentApiIdentifier field cannot be empty when isFiatPaymentAccepted is true")
 
 class Logger(models.Model):
     error_name = models.TextField()
