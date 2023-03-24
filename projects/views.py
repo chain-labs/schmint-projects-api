@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Projects, TestProjects, Logger, TestLogger
+from .models import Projects, TestProjects, Logger, TestLogger, WalletMapper
 from django.http import JsonResponse
 import calendar
 from django import http
@@ -57,6 +57,11 @@ class ProjectsAPI(APIView):
                         }
             projects.append(projectJSON)
         return JsonResponse(projects, safe=False)
+    
+class WalletMapperAPI(APIView):
+    def get(self, request, walletAddress):
+        data = WalletMapper.objects.get(walletAddress=walletAddress)
+        return JsonResponse({data.walletAddress: data.emailAddress}, safe=False)
 
 class TestProjectsAPI(APIView):   
     def get(self, request, format=None):
