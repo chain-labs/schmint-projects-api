@@ -91,3 +91,7 @@ class TestLogger(models.Model):
     slug = models.TextField()
     timestamp = models.CharField(max_length=30)
     wallet_address = models.TextField(null=True, blank=True)
+
+class WalletMapper(models.Model):
+    walletAddress = models.TextField(primary_key=True)
+    emailAddress = models.EmailField()
