@@ -1,5 +1,5 @@
 from rest_framework import serializers 
-from .models import Logger, TestLogger
+from .models import Logger, TestLogger, WalletMapper
  
  
 class LoggerSerializer(serializers.ModelSerializer):
@@ -27,3 +27,9 @@ class TestLoggerSerializer(serializers.ModelSerializer):
                   'slug',
                   'timestamp',
                   'wallet_address')
+
+class WalletMapperSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = WalletMapper
+        fields = "__all__"

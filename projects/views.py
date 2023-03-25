@@ -6,7 +6,7 @@ from django.http import JsonResponse
 import calendar
 from django import http
 from django.conf import settings
-from .serializers import LoggerSerializer, TestLoggerSerializer
+from .serializers import LoggerSerializer, TestLoggerSerializer, WalletMapperSerializer
 
 # Create your views here.
 class ProjectsAPI(APIView):   
@@ -62,6 +62,14 @@ class WalletMapperAPI(APIView):
     def get(self, request, walletAddress):
         data = WalletMapper.objects.get(walletAddress=walletAddress)
         return JsonResponse({data.walletAddress: data.emailAddress}, safe=False)
+    
+    def post(self, request):
+        mapping = request.data.get('mapping')
+        mapperSerializer = WalletMapperSerializer(data = mapping)
+        if mapperSerializer.is_valid():
+            mapperSerializer.save()
+            return JsonResponse(mapperSerializer.data, status=status.HTTP_201_CREATED) 
+        return JsonResponse(mapperSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class TestProjectsAPI(APIView):   
     def get(self, request, format=None):
